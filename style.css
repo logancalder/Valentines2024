@@ -1,0 +1,113 @@
+/* styles.css */
+
+*{
+    justify-content: center;
+    text-align: center;
+    background:#0b1522;
+    
+}
+
+body{
+    font-family: 'Trebuchet MS', sans-serif;
+    font-weight: 100;
+    color:aliceblue;
+    animation: fadeInAnimation ease 4s;
+    text-decoration: none;
+}
+
+/* CSS rules for h1 */
+h1 {
+    text-align: center;
+    margin-top:15%;
+}
+
+
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInAnimationS {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* CSS rules for p */
+p {
+    font-size: 18px;
+    line-height: 1.5;
+    animation: fadeInAnimationS ease 4.5s;
+}
+
+.bubbles{
+    animation: fadeInAnimationS ease 2s;
+}
+
+#hint{
+    animation: fadeInAnimationS ease 7s;
+}
+
+.heart:before{
+    
+    color:#f20044;
+}
+
+#heart{
+    
+    font-size:100px;
+    color:#f20044;
+    text-shadow:-10px 10px 90px #f20044;
+    animation: heart 0.8s linear infinite;
+    pointer-events: none;
+}
+
+.heart:after{
+    font-size:120px;
+}
+
+.heart {
+    pointer-events: none;
+}
+
+/* Style for the icon */
+.heart i {
+    pointer-events: auto;
+}
+
+@keyframes heart{
+    0%{
+        transform: scale(1)
+    }
+    60%{
+        transform: scale(.95)
+    }
+    90%{
+        transform: scale(.90)
+    }
+    100%{
+        transform: scale(1)
+    }
+}
+
+#yes{
+    color:rgb(57, 255, 136) !important;
+    text-shadow:-5px 5px 90px rgb(57, 255, 136) !important;
+    margin-right:10% !important;
+}
+
+
