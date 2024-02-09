@@ -3,86 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Page Title</title>
+    <title>Bubbles <3</title>
+    <link rel="icon" type="image/x-icon" href="/images/heart.png">
     <script src="https://kit.fontawesome.com/92c2b5b560.js" crossorigin="anonymous"></script>
-    <!-- Link to your CSS file -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <script>
     function changeText() {
 
+        /// Element variables
+
+        // Icon elements
         var heart = document.getElementById("heart");
+        
+        // Individual elements
         var heartID = document.getElementById("heartID");
-        var heading = document.getElementById("header");
-        var paragraph = document.getElementById("paragraph");
-        var hint = document.getElementById("hint");
+        var heading = document.getElementById("header"); // Top text
+        var paragraph = document.getElementById("paragraph"); // Mid text
+        var hint = document.getElementById("hint"); // Lower text
+
+        // Pre-created empty yes/no icons
         var yes_button;
         var no_button;
 
+        // Creating icons for yes/no
         var yes = document.createElement('i');
         yes.className = 'fa-solid fa-check size-3x';
         yes.id = "yes";
+
         var no = document.createElement('i');
         no.className = 'fa-solid fa-x size-3x';
         no.id = "no";
 
+        // Elements for working on heart class
         var heartI = heart.querySelector('.heart i')
         var heartDiv = heart.querySelector('.heart');
 
+        // Initial text change that will not repeat on infinite loop
         var headerInitial = "Will you be my Valentine?";
         var paragraphInitial = "Please say yes :\")";
         var hintInitial = "Click the check!";
 
-        var headerTexts = ["Really? Let me try again...","Pweaaaaase?","That really didn\'t work?","Bro. Come on!","My bad. Was that cringe?","You\'re the worst.","I didn\'t mean it!"]
-        var paragraphTexts = ["I\'m begging you.","You\'re hurting my feewingssss!","Just say yes man.","I know you think it\'s funny.","Say yes and I won\'t do it again.","Hmph.","You\'re the BEST!"]
-        var hintTexts = ["No, really. Hit the check.","Click :(","Click. The yes button.","Say yes uwu","I promise!","I don\'t have many more prompts, man.","Now click yes!"]
+        // Text that will iterate infinently
+        var headerTexts = ["Really? Let me try again...","Pweaaaaase?","That really didn\'t work?","Bro. Come on!",
+        "I\'m desperate.","You\'re the worst.","I didn\'t mean it!"]
+        var paragraphTexts = ["I\'m begging you.","You\'re hurting my feewingssss!","Just say yes man.",
+        "I know you think it\'s funny.","Please don\'t make me keep asking!","Hmph.","You\'re the BEST!"]
+        var hintTexts = ["No, really. Hit the check.","Click :(","Click. The yes button.","Say yes!",
+        "I promise!","I don\'t have many more prompts, man.","Now click yes!"]
 
-        var index = 0;
+        var index = 0; // Counter for text cycle
 
+        // Click listener for initial click on heart
         heartID.addEventListener('click', function() {
-            if(index == 0){
-                heart.querySelector('.heart').removeChild(heartI);
-                heartDiv.appendChild(yes);
-                heartDiv.appendChild(no);
-            }
 
+            // Remove heart icon and add yes/no icons
+            heart.querySelector('.heart').removeChild(heartI);
+            heartDiv.appendChild(yes);
+            heartDiv.appendChild(no);
+
+            // Swap the text to new prompts w/ fade animations
             fadeOutAndChangeText(heading, headerInitial);
             fadeOutAndChangeText(paragraph, paragraphInitial);
             fadeOutAndChangeText(hint, hintInitial);
             
+            // Creating the yes/no variables
             var yes_button = document.getElementById("yes");
             var no_button = document.getElementById("no");
         });
 
+        // Check listener for no button
         no.addEventListener('click', function() {
             
+            // Change the text to next prompt in array of prompts
             fadeOutAndChangeText(heading, headerTexts[index]);
             fadeOutAndChangeText(paragraph, paragraphTexts[index]);
             fadeOutAndChangeText(hint, hintTexts[index]);
             
-            if(index < headerTexts.length - 1){
-                index++;
-            } else{
-                index = 0;
-            }
+            // Increment or reset index depending on what position it is at
+            index = (index + 1) % headerTexts.length;
         });
 
+        // Check listener for yes button
         yes.addEventListener('click', function() {
             
+            // Change the text to celebration prompts
             fadeOutAndChangeText(heading, "YAYYYY!!!! I knew you\'d come through!");
             fadeOutAndChangeText(paragraph, "My Valentine <3333");
             fadeOutAndChangeText(hint, "");
 
+            // Remove yes and no buttons
             heart.querySelector('.heart').removeChild(yes);
             heart.querySelector('.heart').removeChild(no);
+            // Add Stitch GIF
             let img = document.createElement('img');
-            img.src = 'stitch-angel.gif';
-            heart.querySelector(".heart").appendChild(img);
+            img.src = 'images/stitch-angel.gif';
+            fadeIn(heart.querySelector(".heart").appendChild(img));
         });
         
-
+        // Fade out text & change it animation
         function fadeOutAndChangeText(element, newText) {
+
             element.style.opacity = '0';
             setTimeout(function() {
                 element.textContent = newText;
@@ -90,7 +112,9 @@
             }, 500);
         }
 
+        // Fade text back in animation
         function fadeIn(element) {
+
             var opacity = 0;
             var interval = setInterval(function() {
                 if (opacity < 1) {
@@ -102,11 +126,10 @@
             }, 50);
         }
     }
-
 </script>
 
 <body onload="changeText()">
-    <h1 id = "header">Hello, <span class = "bubbles">Bubbles!</span></h1>
+    <h1 id = "header">Hello, <span id = "bubbles">Bubbles!</span></h1>
     <p id = "paragraph">I had a question for you...</p>
     <a id = "heart" href = "#"><div class = "heart"><i class="fa-solid fa-heart size-3x" id = "heartID"></i></div></a>
     <p id = "hint">Click the heart!</p>
